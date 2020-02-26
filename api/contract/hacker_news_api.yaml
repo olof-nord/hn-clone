@@ -1,0 +1,145 @@
+openapi: '3.0.0'
+info:
+  version: '0.0.0'
+  title: Hacker News API
+  description: >
+    Documentation and Samples for the Official HN API.
+  contact:
+    url: https://github.com/HackerNews/API
+servers:
+  - url: https://hacker-news.firebaseio.com/v0
+    description: Firebase Hacker News API
+paths:
+  /item/{itemId}:
+    get:
+      summary: List a single Hacker News item
+      operationId: 'getItem'
+      parameters:
+        - $ref: '#/components/parameters/ItemId'
+      responses:
+        '200':
+          $ref: '#/components/responses/ItemResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+components:
+  # Reusable schemas (data models)
+  schemas:
+    Item:
+      type: object
+      description: This is the model which is used when fetching an item
+      required:
+        - id
+      properties:
+        id:
+          type: integer
+          example: 8863
+          description: The item's unique id.
+        deleted:
+          type: boolean
+          example: true
+          description: true if the item is deleted.
+        type:
+          type: string
+          example: story
+          description: The type of item. One of "job", "story", "comment", "poll", or "pollopt".
+        by:
+          type: string
+          example: dhouston
+          description: The username of the item's author.
+        time:
+          type: integer
+          example: 1175714200
+          description: Creation date of the item, in Unix Time.
+        text:
+          type: string
+          example: 'Aw shucks, guys ... you make me blush with your compliments.<p>Tell you what, Ill make a deal'
+          description: The comment, story or poll text. HTML.
+        dead:
+          type: boolean
+          example: true
+          description: true if the item is dead.
+        parent:
+          type: integer
+          example: 2921506
+          description: The comment's parent, either another comment or the relevant story.
+        poll:
+          type: integer
+          example: 160704
+          description: The pollopt's associated poll
+        kids:
+          type: array
+          example: [ 8952, 9224 ]
+          description: The ids of the item's comments, in ranked display order.
+          items:
+            type: integer
+        url:
+          type: string
+          format: uri
+          example: http://www.getdropbox.com/u/2/screencast.html
+          description: The URL of the story.
+        score:
+          type: integer
+          example: 25
+          description: The story's score, or the votes for a pollopt.
+        title:
+          type: string
+          example: 'My YC app: Dropbox - Throw away your USB drive'
+          description: The title of the story, poll or job. HTML.
+        parts:
+          type: array
+          example: [ 126810, 126811, 126812 ]
+          description: A list of related pollopts, in display order.
+          items:
+            type: integer
+        descendants:
+          type: integer
+          example: 71
+          description: In the case of stories or polls, the total comment count.
+
+    ItemType:
+      type: string
+      description: The possible item types
+      enum:
+        - JOB
+        - STORY
+        - COMMENT
+        - POLL
+        - POLLOPT
+
+  # Reusable operation parameters
+  parameters:
+    ItemId:
+      name: itemId
+      in: path
+      required: true
+      description: The id of the item
+      example: 8863
+      schema:
+        type: integer
+
+  # Reusable responses
+  responses:
+    ItemResponse:
+      description: Item response - type story
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Item'
+          example:
+            by: dhouston
+            descendants: 71
+            id: 8863
+            kids: Svensson
+            score: 111
+            time: 1175714200
+            type: story
+            url: http://www.getdropbox.com/u/2/screencast.html
+
+    NotFound:
+      description: Resource not found
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: not found
