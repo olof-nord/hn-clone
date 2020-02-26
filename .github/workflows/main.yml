@@ -30,3 +30,8 @@ jobs:
 
     - name: Run E2E tests
       run: npm --prefix ./hn-clone-app run e2e -- --configuration=ci
+
+    - name: Lint API specification
+      uses: docker://openapitools/openapi-generator-cli
+      with:
+        args: validate -i api/hacker_news_api.yaml
