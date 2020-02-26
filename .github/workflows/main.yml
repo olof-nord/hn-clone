@@ -1,0 +1,26 @@
+name: Hacker News Clone Pipeline
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      
+    - name: Setup node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+
+    - name: Install dependencies
+      run: npm --prefix /hn-clone-app install
+
+    - name: Build application
+      run: npm --prefix /hn-clone-app run build
+
+    - name: Run tests
+      run: npm --prefix /hn-clone-app test
