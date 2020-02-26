@@ -19,8 +19,14 @@ jobs:
     - name: Install dependencies
       run: npm --prefix ./hn-clone-app install
 
+    - name: Lint application
+      run: npm --prefix ./hn-clone-app run lint
+
     - name: Build application
       run: npm --prefix ./hn-clone-app run build
 
     - name: Run tests
       run: npm --prefix ./hn-clone-app test -- --configuration=ci
+
+    - name: Run E2E tests
+      run: npm --prefix ./hn-clone-app run e2e -- --configuration=ci
