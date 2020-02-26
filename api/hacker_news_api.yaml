@@ -43,6 +43,12 @@ components:
           type: string
           example: story
           description: The type of item. One of "job", "story", "comment", "poll", or "pollopt".
+          enum:
+            - job
+            - story
+            - comment
+            - poll
+            - pollopt
         by:
           type: string
           example: dhouston
@@ -97,16 +103,6 @@ components:
           example: 71
           description: In the case of stories or polls, the total comment count.
 
-    ItemType:
-      type: string
-      description: The possible item types
-      enum:
-        - JOB
-        - STORY
-        - COMMENT
-        - POLL
-        - POLLOPT
-
   # Reusable operation parameters
   parameters:
     ItemId:
@@ -121,20 +117,34 @@ components:
   # Reusable responses
   responses:
     ItemResponse:
-      description: Item response - type story
+      description: Item response
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Item'
-          example:
-            by: dhouston
-            descendants: 71
-            id: 8863
-            kids: Svensson
-            score: 111
-            time: 1175714200
-            type: story
-            url: http://www.getdropbox.com/u/2/screencast.html
+          examples:
+            story:
+              summary: Example response (story)
+              value:
+                id: 8863
+                type: story
+                by: dhouston
+                descendants: 71
+                kids: [ 8952, 9224 ]
+                score: 111
+                time: 1175714200
+                title: 'My YC app: Dropbox - Throw away your USB drive'
+                url: http://www.getdropbox.com/u/2/screencast.html
+            comment:
+              summary: Example response (comment)
+              value:
+                id: 2921983
+                type: comment
+                by: norvig
+                kids: [ 2922097, 2922429 ]
+                parent: 2921506
+                time: 1314211127
+                text: 'Aw shucks, guys ...'
 
     NotFound:
       description: Resource not found
