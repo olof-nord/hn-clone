@@ -23,4 +23,4 @@ jobs:
       run: npm --prefix ./hn-clone-app run build
 
     - name: Run tests
-      run: npm --prefix ./hn-clone-app test
+      run: npm --prefix ./hn-clone-app test -- --configuration=ci

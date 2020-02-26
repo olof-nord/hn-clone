@@ -7,7 +7,8 @@
     "start": "ng-openapi-gen && ng serve --open",
     "prebuild": "npm run clean",
     "build": "ng-openapi-gen && ng build",
-    "test": "ng test --watch",
+    "test": "ng test",
+    "test:dev": "ng test --watch=true",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -42,6 +43,7 @@
     "karma-jasmine-html-reporter": "^1.4.2",
     "ng-openapi-gen": "^0.8.0",
     "protractor": "~5.4.3",
+    "puppeteer": "^2.1.1",
     "rimraf": "^3.0.2",
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0",
