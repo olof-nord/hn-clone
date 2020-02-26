@@ -17,10 +17,10 @@ jobs:
         node-version: '12.x'
 
     - name: Install dependencies
-      run: npm --prefix /hn-clone-app install
+      run: npm --prefix ./hn-clone-app install
 
     - name: Build application
-      run: npm --prefix /hn-clone-app run build
+      run: npm --prefix ./hn-clone-app run build
 
     - name: Run tests
-      run: npm --prefix /hn-clone-app test
+      run: npm --prefix ./hn-clone-app test
