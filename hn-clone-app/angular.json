@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "hn-clone-app": {
@@ -132,8 +132,17 @@
               "protractorConfig": "e2e/protractor-ci.conf.js"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "https://olof-nord.github.io/hn-clone/",
+            "noSilent": true,
+            "message": "Deploying app to GitHub Pages"
+          }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "hn-clone-app"
 }
