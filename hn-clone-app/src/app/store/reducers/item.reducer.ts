@@ -1,5 +1,5 @@
-import { isDevMode } from '@angular/core';
 import { Action, createReducer, on } from '@ngrx/store';
+import { environment } from '@environments/environment';
 
 import * as itemActions from '@store/actions/item.actions';
 import { Item } from '@api/models/item';
@@ -37,7 +37,7 @@ const itemReducer = createReducer(
 );
 
 export function reducer(state: State | undefined, action: Action) {
-  if (isDevMode) {
+  if (!environment.production) {
     console.log('Action dispatched: ', action.type);
   }
 
