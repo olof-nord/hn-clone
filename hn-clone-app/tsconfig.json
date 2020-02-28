@@ -1,12 +1,16 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "src",
     "paths": {
-      "@api/*":  ["api/*"],
+      "@api/*":  ["../api/*"],
       "@app/*": ["app/*"],
       "@assets/*": ["assets/*"],
-      "@environments/*": ["environments/*"]
+      "@environments/*": ["environments/*"],
+
+      "@store/reducers/*": ["app/store/reducers/*"],
+      "@store/actions/*": ["app/store/actions/*"],
+      "@store/effects/*": ["app/store/effects/*"]
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,

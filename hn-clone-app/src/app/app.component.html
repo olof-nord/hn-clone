@@ -1,6 +1,18 @@
 <h1>Hacker News Clone</h1>
 
-<h2>{{ story.title }}</h2>
-<p>
-  {{ story.id }}
-</p>
+<div *ngIf="loading$ | async">
+  <p>Loading</p>
+</div>
+
+<div *ngIf="item$ | async as item">
+  <h2>{{ item?.title }}</h2>
+  <p>
+    {{ item?.id }}
+  </p>
+</div>
+
+<div *ngIf="error$ | async as error">
+  <p>
+    {{ error }}
+  </p>
+</div>

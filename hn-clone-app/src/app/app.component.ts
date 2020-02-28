@@ -1,20 +1,33 @@
-import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 
-import { ApiConfiguration } from '@api/api-configuration';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
+import { State } from '@app/store/reducers';
+import { Item } from '@api/models';
+import {getItem, getItemErrorMessage, getItemLoading} from '@app/store/selector/item.selectors';
+import * as itemActions from '@store/actions/item.actions';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  loading$: Observable<boolean>;
+  error$: Observable<string>;
+  item$: Observable<Item>;
+
   title = 'Hacker News';
 
-  story: any = { };
+  constructor(private store: Store<State>) { }
 
-  constructor(http: HttpClient, apiConfiguration: ApiConfiguration) {
-    http.get(apiConfiguration.rootUrl + '/item/8863.json')
-      .subscribe(s => this.story = s);
+  ngOnInit() {
+    this.item$ = this.store.pipe(select(getItem));
+    this.loading$ = this.store.pipe(select(getItemLoading));
+    this.error$ = this.store.pipe(select(getItemErrorMessage));
+
+    // Load a single HN item
+    this.store.dispatch(itemActions.loadItem({ id: 8863 }));
   }
 }
