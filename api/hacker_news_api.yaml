@@ -32,6 +32,72 @@ paths:
                 type: string
                 example: not found
 
+  /maxitem.{itemFormat}:
+    get:
+      summary: The current largest item id
+      operationId: 'getLatestItem'
+      parameters:
+        - $ref: '#/components/parameters/ItemFormat'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: integer
+                example: 22444422
+
+  /topstories.{itemFormat}:
+    get:
+      summary: List up to 500 top stories
+      operationId: 'getTopItems'
+      parameters:
+        - $ref: '#/components/parameters/ItemFormat'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                example: [ 22432828, 22444099 ]
+                items:
+                  type: integer
+
+  /newstories.{itemFormat}:
+    get:
+      summary: List up to 500 newest stories
+      operationId: 'getNewestItems'
+      parameters:
+        - $ref: '#/components/parameters/ItemFormat'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                example: [ 22432828, 22444099 ]
+                items:
+                  type: integer
+
+  /beststories.{itemFormat}:
+    get:
+      summary: List the best ranked stories
+      operationId: 'getBestItems'
+      parameters:
+        - $ref: '#/components/parameters/ItemFormat'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                example: [ 22432828, 22444099 ]
+                items:
+                  type: integer
+
 components:
   # Reusable schemas (data models)
   schemas:
