@@ -18,9 +18,18 @@ paths:
         - $ref: '#/components/parameters/ItemId'
       responses:
         '200':
-          $ref: '#/components/responses/ItemResponse'
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
         '404':
-          $ref: '#/components/responses/NotFound'
+          description: Resource not found
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: not found
 
 components:
   # Reusable schemas (data models)
@@ -113,43 +122,3 @@ components:
       example: 8863
       schema:
         type: integer
-
-  # Reusable responses
-  responses:
-    ItemResponse:
-      description: Item response
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Item'
-          examples:
-            story:
-              summary: Example response (story)
-              value:
-                id: 8863
-                type: story
-                by: dhouston
-                descendants: 71
-                kids: [ 8952, 9224 ]
-                score: 111
-                time: 1175714200
-                title: 'My YC app: Dropbox - Throw away your USB drive'
-                url: http://www.getdropbox.com/u/2/screencast.html
-            comment:
-              summary: Example response (comment)
-              value:
-                id: 2921983
-                type: comment
-                by: norvig
-                kids: [ 2922097, 2922429 ]
-                parent: 2921506
-                time: 1314211127
-                text: 'Aw shucks, guys ...'
-
-    NotFound:
-      description: Resource not found
-      content:
-        text/plain:
-          schema:
-            type: string
-            example: not found
