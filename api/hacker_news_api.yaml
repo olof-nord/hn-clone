@@ -10,12 +10,13 @@ servers:
   - url: https://hacker-news.firebaseio.com/v0
     description: Firebase Hacker News API
 paths:
-  /item/{itemId}:
+  /item/{itemId}.{itemFormat}:
     get:
       summary: List a single Hacker News item
       operationId: 'getItem'
       parameters:
         - $ref: '#/components/parameters/ItemId'
+        - $ref: '#/components/parameters/ItemFormat'
       responses:
         '200':
           description: Successful response
@@ -122,3 +123,12 @@ components:
       example: 8863
       schema:
         type: integer
+    ItemFormat:
+      name: itemFormat
+      in: path
+      required: true
+      description: The file type of the item
+      example: json
+      schema:
+        type: string
+        default: json
