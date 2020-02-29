@@ -14,6 +14,8 @@ paths:
     get:
       summary: List a single Hacker News item
       operationId: 'getItem'
+      tags:
+        - Hacker News API
       parameters:
         - $ref: '#/components/parameters/ItemId'
         - $ref: '#/components/parameters/ItemFormat'
@@ -36,6 +38,8 @@ paths:
     get:
       summary: The current largest item id
       operationId: 'getLatestItem'
+      tags:
+        - Hacker News API
       parameters:
         - $ref: '#/components/parameters/ItemFormat'
       responses:
@@ -51,6 +55,8 @@ paths:
     get:
       summary: List up to 500 top stories
       operationId: 'getTopItems'
+      tags:
+        - Hacker News API
       parameters:
         - $ref: '#/components/parameters/ItemFormat'
       responses:
@@ -68,6 +74,8 @@ paths:
     get:
       summary: List up to 500 newest stories
       operationId: 'getNewestItems'
+      tags:
+        - Hacker News API
       parameters:
         - $ref: '#/components/parameters/ItemFormat'
       responses:
@@ -85,6 +93,8 @@ paths:
     get:
       summary: List the best ranked stories
       operationId: 'getBestItems'
+      tags:
+        - Hacker News API
       parameters:
         - $ref: '#/components/parameters/ItemFormat'
       responses:
