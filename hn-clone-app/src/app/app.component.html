@@ -11,12 +11,6 @@
   </p>
 </div>
 
-<div *ngIf="error$ | async as error">
-  <p>
-    {{ error }}
-  </p>
-</div>
-
 <div *ngIf="latestItemId$ | async as latestItemId">
   <p>
     latest item id: {{ latestItemId }}
@@ -26,5 +20,17 @@
 <div *ngIf="topItemIds$ | async as topItemIds">
   <p>
     top item ids: {{ topItemIds }}
+  </p>
+</div>
+
+<div *ngIf="newItemIds$ | async as newItemIds">
+  <p>
+    new item ids: {{ newItemIds }}
+  </p>
+</div>
+
+<div *ngIf="error$ | async as error">
+  <p>
+    {{ error }}
   </p>
 </div>

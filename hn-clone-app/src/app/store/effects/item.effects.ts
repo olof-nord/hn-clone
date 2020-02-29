@@ -40,8 +40,8 @@ export class ItemEffects {
       this.apiService
         .getLatestItem({ itemFormat: this.itemFormat })
         .pipe(
-          map((id: number) => {
-            return itemActions.loadLatestItemIdSuccess({ id });
+          map((latestItemId: number) => {
+            return itemActions.loadLatestItemIdSuccess({ latestItemId });
           }),
           catchError(() => {
             return of(itemActions.loadItemFail({ errorMessage: this.errorMessage }));
@@ -57,8 +57,25 @@ export class ItemEffects {
       this.apiService
         .getTopItems({ itemFormat: this.itemFormat })
         .pipe(
-          map((ids: number[]) => {
-            return itemActions.loadTopItemIdsSuccess({ ids });
+          map((topItemIds: number[]) => {
+            return itemActions.loadTopItemIdsSuccess({ topItemIds });
+          }),
+          catchError(() => {
+            return of(itemActions.loadItemFail({ errorMessage: this.errorMessage }));
+          })
+        )
+      )
+    )
+  );
+
+  loadNewItems$ = createEffect(() => this.actions$.pipe(
+    ofType(itemActions.loadNewItemIds),
+    switchMap(() =>
+      this.apiService
+        .getNewItems({ itemFormat: this.itemFormat })
+        .pipe(
+          map((newItemIds: number[]) => {
+            return itemActions.loadNewItemIdsSuccess({ newItemIds });
           }),
           catchError(() => {
             return of(itemActions.loadItemFail({ errorMessage: this.errorMessage }));

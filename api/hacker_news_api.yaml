@@ -73,7 +73,7 @@ paths:
   /newstories.{itemFormat}:
     get:
       summary: List up to 500 newest stories
-      operationId: 'getNewestItems'
+      operationId: 'getNewItems'
       tags:
         - Hacker News API
       parameters:
