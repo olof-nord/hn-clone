@@ -7,6 +7,8 @@ This project is a clone of [Hacker News](https://news.ycombinator.com) rewritten
 - [ng-openapi-gen](https://github.com/cyclosproject/ng-openapi-gen) for API client generation
 - [angular-cli-ghpages](https://github.com/angular-schule/angular-cli-ghpages) to deploy directly to GitHub Pages
 - [ngrx](https://github.com/ngrx/platform) for state management
+- [bootstrap](https://github.com/twbs/bootstrap) for CSS styles 
+- [ng-bootstrap](https://github.com/ng-bootstrap/ng-bootstrap) for Angular Bootstrap components
 
 ## Data source
 - The information is taken from the public [Hacker News API](https://github.com/HackerNews/API).
