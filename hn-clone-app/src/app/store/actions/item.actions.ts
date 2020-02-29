@@ -34,6 +34,14 @@ export const loadNewItemIdsSuccess = createAction(
   props<{ newItemIds: number[] }>()
 );
 
+export const loadBestItemIds = createAction(
+  '[Item] Load BEST item ids'
+);
+export const loadBestItemIdsSuccess = createAction(
+  '[Item] Load BEST item ids success',
+  props<{ bestItemIds: number[] }>()
+);
+
 export const loadItemFail = createAction(
   '[Item] Load failure',
   props<{ errorMessage: string }>()

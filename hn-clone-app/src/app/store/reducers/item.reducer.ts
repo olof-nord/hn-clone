@@ -9,6 +9,7 @@ export interface State {
   latestItemId: number;
   topItemIds: number[];
   newItemIds: number[];
+  bestItemIds: number[];
   isLoading: boolean;
   errorMessage: string;
 }
@@ -20,6 +21,7 @@ export const initialState: State = {
   latestItemId: null,
   topItemIds: [],
   newItemIds: [],
+  bestItemIds: [],
   isLoading: false,
   errorMessage: null
 };
@@ -79,6 +81,20 @@ const itemReducer = createReducer(
       ...state,
       isLoading: false,
       newItemIds
+    };
+  }),
+
+  on(itemActions.loadBestItemIds, (state: State) => {
+    return {
+      ...state,
+      isLoading: true
+    };
+  }),
+  on(itemActions.loadBestItemIdsSuccess, (state: State, { bestItemIds }) => {
+    return {
+      ...state,
+      isLoading: false,
+      bestItemIds
     };
   }),
 

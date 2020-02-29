@@ -85,4 +85,21 @@ export class ItemEffects {
     )
   );
 
+  loadBestItems$ = createEffect(() => this.actions$.pipe(
+    ofType(itemActions.loadBestItemIds),
+    switchMap(() =>
+      this.apiService
+        .getBestItems({ itemFormat: this.itemFormat })
+        .pipe(
+          map((bestItemIds: number[]) => {
+            return itemActions.loadBestItemIdsSuccess({ bestItemIds });
+          }),
+          catchError(() => {
+            return of(itemActions.loadItemFail({ errorMessage: this.errorMessage }));
+          })
+        )
+      )
+    )
+  );
+
 }

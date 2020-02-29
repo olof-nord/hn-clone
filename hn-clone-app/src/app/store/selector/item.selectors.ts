@@ -28,6 +28,11 @@ export const getNewItemIds = createSelector(
   state => state.newItemIds
 );
 
+export const getBestItemIds = createSelector(
+  getItemState,
+  state => state.bestItemIds
+);
+
 export const getItemErrorMessage = createSelector(
   getItemState,
   state => state.errorMessage

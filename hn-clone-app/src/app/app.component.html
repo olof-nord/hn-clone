@@ -19,13 +19,19 @@
 
 <div *ngIf="topItemIds$ | async as topItemIds">
   <p>
-    top item ids: {{ topItemIds }}
+    TOP item ids: {{ topItemIds }}
   </p>
 </div>
 
 <div *ngIf="newItemIds$ | async as newItemIds">
   <p>
-    new item ids: {{ newItemIds }}
+    NEWEST item ids: {{ newItemIds }}
+  </p>
+</div>
+
+<div *ngIf="bestItemIds$ | async as bestItemIds">
+  <p>
+    BEST item ids: {{ bestItemIds }}
   </p>
 </div>
 

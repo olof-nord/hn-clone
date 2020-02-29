@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { State } from '@app/store/reducers';
 import { Item } from '@api/models';
 import {
+  getBestItemIds,
   getItem,
   getItemErrorMessage,
   getItemLoading,
@@ -25,16 +26,20 @@ export class AppComponent implements OnInit {
   error$: Observable<string>;
   item$: Observable<Item>;
   latestItemId$: Observable<number>;
+
   topItemIds$: Observable<number[]>;
   newItemIds$: Observable<number[]>;
+  bestItemIds$: Observable<number[]>;
 
   constructor(private store: Store<State>) { }
 
   ngOnInit() {
     this.item$ = this.store.pipe(select(getItem));
     this.latestItemId$ = this.store.pipe(select(getLatestItemId));
+
     this.topItemIds$ = this.store.pipe(select(getTopItemIds));
     this.newItemIds$ = this.store.pipe(select(getNewItemIds));
+    this.bestItemIds$ = this.store.pipe(select(getBestItemIds));
 
     this.loading$ = this.store.pipe(select(getItemLoading));
     this.error$ = this.store.pipe(select(getItemErrorMessage));
@@ -50,5 +55,8 @@ export class AppComponent implements OnInit {
 
     // Get the newest item ids
     this.store.dispatch(itemActions.loadNewItemIds());
+
+    // Get the best rated item ids
+    this.store.dispatch(itemActions.loadBestItemIds());
   }
 }
