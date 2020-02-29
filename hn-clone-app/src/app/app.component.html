@@ -7,12 +7,18 @@
 <div *ngIf="item$ | async as item">
   <h2>{{ item?.title }}</h2>
   <p>
-    {{ item?.id }}
+    item id: {{ item?.id }}
   </p>
 </div>
 
 <div *ngIf="error$ | async as error">
   <p>
     {{ error }}
+  </p>
+</div>
+
+<div *ngIf="latestItemId$ | async as latestItemId">
+  <p>
+    latest item id: {{ latestItemId }}
   </p>
 </div>

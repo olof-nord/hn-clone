@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 import { State } from '@app/store/reducers';
 import { Item } from '@api/models';
-import {getItem, getItemErrorMessage, getItemLoading} from '@app/store/selector/item.selectors';
+import { getItem, getItemErrorMessage, getItemLoading, getLatestItemId } from '@app/store/selector/item.selectors';
 import * as itemActions from '@store/actions/item.actions';
 
 @Component({
@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
   loading$: Observable<boolean>;
   error$: Observable<string>;
   item$: Observable<Item>;
+  latestItemId$: Observable<number>;
 
   title = 'Hacker News';
 
@@ -24,10 +25,14 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.item$ = this.store.pipe(select(getItem));
+    this.latestItemId$ = this.store.pipe(select(getLatestItemId));
     this.loading$ = this.store.pipe(select(getItemLoading));
     this.error$ = this.store.pipe(select(getItemErrorMessage));
 
     // Load a single HN item
     this.store.dispatch(itemActions.loadItem({ id: 8863 }));
+
+    // Get the currently highest available item id
+    this.store.dispatch(itemActions.loadLatestItemId());
   }
 }

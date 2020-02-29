@@ -13,6 +13,11 @@ export const getItem = createSelector(
   state => state.item
 );
 
+export const getLatestItemId = createSelector(
+  getItemState,
+  state => state.latestItemId
+);
+
 export const getItemErrorMessage = createSelector(
   getItemState,
   state => state.errorMessage
