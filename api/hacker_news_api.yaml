@@ -54,6 +54,7 @@ paths:
   /topstories.{itemFormat}:
     get:
       summary: List up to 500 top stories
+      description: These are the stories listed on the start page (https://news.ycombinator.com)
       operationId: 'getTopItems'
       tags:
         - Hacker News API
@@ -73,6 +74,7 @@ paths:
   /newstories.{itemFormat}:
     get:
       summary: List up to 500 newest stories
+      description: These are the stories listed on the 'new' page (https://news.ycombinator.com/newest)
       operationId: 'getNewItems'
       tags:
         - Hacker News API
@@ -92,6 +94,7 @@ paths:
   /beststories.{itemFormat}:
     get:
       summary: List the best ranked stories
+      description: These are the stories listed on the 'past' page (https://news.ycombinator.com/front)
       operationId: 'getBestItems'
       tags:
         - Hacker News API
