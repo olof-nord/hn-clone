@@ -22,3 +22,9 @@
     latest item id: {{ latestItemId }}
   </p>
 </div>
+
+<div *ngIf="topItemIds$ | async as topItemIds">
+  <p>
+    top item ids: {{ topItemIds }}
+  </p>
+</div>

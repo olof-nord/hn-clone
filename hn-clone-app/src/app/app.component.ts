@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 import { State } from '@app/store/reducers';
 import { Item } from '@api/models';
-import { getItem, getItemErrorMessage, getItemLoading, getLatestItemId } from '@app/store/selector/item.selectors';
+import { getItem, getItemErrorMessage, getItemLoading, getLatestItemId, getTopItemIds } from '@app/store/selector/item.selectors';
 import * as itemActions from '@store/actions/item.actions';
 
 @Component({
@@ -18,14 +18,15 @@ export class AppComponent implements OnInit {
   error$: Observable<string>;
   item$: Observable<Item>;
   latestItemId$: Observable<number>;
-
-  title = 'Hacker News';
+  topItemIds$: Observable<number[]>;
 
   constructor(private store: Store<State>) { }
 
   ngOnInit() {
     this.item$ = this.store.pipe(select(getItem));
     this.latestItemId$ = this.store.pipe(select(getLatestItemId));
+    this.topItemIds$ = this.store.pipe(select(getTopItemIds));
+
     this.loading$ = this.store.pipe(select(getItemLoading));
     this.error$ = this.store.pipe(select(getItemErrorMessage));
 
@@ -34,5 +35,8 @@ export class AppComponent implements OnInit {
 
     // Get the currently highest available item id
     this.store.dispatch(itemActions.loadLatestItemId());
+
+    // Get the top item ids
+    this.store.dispatch(itemActions.loadTopItemIds());
   }
 }

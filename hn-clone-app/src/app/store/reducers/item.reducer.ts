@@ -7,6 +7,7 @@ import { Item } from '@api/models/item';
 export interface State {
   item: Item;
   latestItemId: number;
+  topItemIds: number[];
   isLoading: boolean;
   errorMessage: string;
 }
@@ -16,6 +17,7 @@ export const initialState: State = {
     id: null
   },
   latestItemId: null,
+  topItemIds: [],
   isLoading: false,
   errorMessage: null
 };
@@ -47,6 +49,20 @@ const itemReducer = createReducer(
       ...state,
       isLoading: false,
       latestItemId: id
+    };
+  }),
+
+  on(itemActions.loadTopItemIds, (state: State) => {
+    return {
+      ...state,
+      isLoading: true
+    };
+  }),
+  on(itemActions.loadTopItemIdsSuccess, (state: State, { ids }) => {
+    return {
+      ...state,
+      isLoading: false,
+      topItemIds: ids
     };
   }),
 

@@ -18,6 +18,11 @@ export const getLatestItemId = createSelector(
   state => state.latestItemId
 );
 
+export const getTopItemIds = createSelector(
+  getItemState,
+  state => state.topItemIds
+);
+
 export const getItemErrorMessage = createSelector(
   getItemState,
   state => state.errorMessage

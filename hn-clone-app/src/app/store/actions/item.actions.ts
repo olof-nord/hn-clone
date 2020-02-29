@@ -10,13 +10,20 @@ export const loadItemSuccess = createAction(
   props<{ item: Item }>()
 );
 
-
 export const loadLatestItemId = createAction(
   '[Item] Load latest item id'
 );
 export const loadLatestItemIdSuccess = createAction(
   '[Item] Load latest item id success',
   props<{ id: number }>()
+);
+
+export const loadTopItemIds = createAction(
+  '[Item] Load top item ids'
+);
+export const loadTopItemIdsSuccess = createAction(
+  '[Item] Load top item ids success',
+  props<{ ids: number[] }>()
 );
 
 export const loadItemFail = createAction(
