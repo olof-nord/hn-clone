@@ -6,7 +6,7 @@ export const loadItem = createAction(
   props<{ id: number }>()
 );
 export const loadItemSuccess = createAction(
-  '[Item] Load success',
+  '[Item] Load item success',
   props<{ item: Item }>()
 );
 

@@ -22,7 +22,7 @@ export const initialState: State = {
   topItemIds: [],
   newItemIds: [],
   bestItemIds: [],
-  isLoading: false,
+  isLoading: true,
   errorMessage: null
 };
 
