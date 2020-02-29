@@ -37,6 +37,8 @@
 
 <div *ngIf="error$ | async as error">
   <p>
-    {{ error }}
+    <ngb-alert dismissible="false" type="danger" >
+      An error occurred: {{ error }}
+    </ngb-alert>
   </p>
 </div>

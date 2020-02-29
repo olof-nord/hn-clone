@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ApiModule } from '@api/api.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +25,7 @@ import { ItemEffects } from '@store/effects/item.effects';
     AppRoutingModule,
     HttpClientModule,
     ApiModule,
+    NgbModule,
     StoreModule.forRoot(reducers, {
       metaReducers,
       runtimeChecks: {
