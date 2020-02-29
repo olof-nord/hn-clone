@@ -10,8 +10,9 @@ This project is a clone of [Hacker News](https://news.ycombinator.com) rewritten
 - [bootstrap](https://github.com/twbs/bootstrap) for CSS styles 
 - [ng-bootstrap](https://github.com/ng-bootstrap/ng-bootstrap) for Angular Bootstrap components
 
-## Data source
+## Hacker News API
 - The information is taken from the public [Hacker News API](https://github.com/HackerNews/API).
+- The endpoints used are specified in [the api specification](./api/hacker_news_api.yaml).
 
 ## Start
 Running the app in dev mode including hot module reloading:  
