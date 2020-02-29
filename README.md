@@ -1,12 +1,15 @@
 # Hacker News Clone
 
-This project is a clone of Hacker News rewritten with Angular.
+This project is a clone of [Hacker News](https://news.ycombinator.com) rewritten with Angular.
 
 ## Tooling
 - Angular 9
 - [ng-openapi-gen](https://github.com/cyclosproject/ng-openapi-gen) for API client generation
 - [angular-cli-ghpages](https://github.com/angular-schule/angular-cli-ghpages) to deploy directly to GitHub Pages
 - [ngrx](https://github.com/ngrx/platform) for state management
+
+## Data source
+- The information is taken from the public [Hacker News API](https://github.com/HackerNews/API).
 
 ## Start
 Running the app in dev mode including hot module reloading:  
@@ -23,5 +26,3 @@ To execute all tests:
 ## Deploy
 To deploy to GitHub pages:  
 `npm run deploy`
-
-URL: https://olof-nord.github.io/hn-clone/
