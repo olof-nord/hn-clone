@@ -5,30 +5,30 @@ export const selectItemsIdState = createFeatureSelector<fromItemsId.ItemsIdState
 
 export const getItemsIdLoading = createSelector(
   selectItemsIdState,
-  state => state.isLoading
+  itemIds => itemIds.isLoading
 );
 
 export const getLatestItemId = createSelector(
   selectItemsIdState,
-  state => state.latestItemId
+  itemIds => itemIds.latestItemId
 );
 
 export const getTopItemIds = createSelector(
   selectItemsIdState,
-  state => state.topItemIds
+  itemIds => itemIds.topItemIds
 );
 
 export const getNewItemIds = createSelector(
   selectItemsIdState,
-  state => state.newItemIds
+  itemIds => itemIds.newItemIds
 );
 
 export const getBestItemIds = createSelector(
   selectItemsIdState,
-  state => state.bestItemIds
+  itemIds => itemIds.bestItemIds
 );
 
 export const getItemIdErrorMessage = createSelector(
   selectItemsIdState,
-  state => state.errorMessage
+  itemIds => itemIds.errorMessage
 );
