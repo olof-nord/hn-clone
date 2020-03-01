@@ -1,104 +1,36 @@
 import { Action, createReducer, on } from '@ngrx/store';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { environment } from '@environments/environment';
 
 import * as itemActions from '@store/actions/item.actions';
 import { Item } from '@api/models/item';
 
-export interface State {
-  item: Item;
-  latestItemId: number;
-  topItemIds: number[];
-  newItemIds: number[];
-  bestItemIds: number[];
+export interface ItemsState extends EntityState<Item> {
   isLoading: boolean;
   errorMessage: string;
 }
+export const itemEntityAdapter: EntityAdapter<Item> = createEntityAdapter<Item>();
 
-export const initialState: State = {
-  item: {
-    id: null
-  },
-  latestItemId: null,
-  topItemIds: [],
-  newItemIds: [],
-  bestItemIds: [],
+export const initialState: ItemsState = itemEntityAdapter.getInitialState({
   isLoading: true,
   errorMessage: null
-};
+});
 
 const itemReducer = createReducer(
   initialState,
-  on(itemActions.loadItem, (state: State) => {
+  on(itemActions.loadItem, (state: ItemsState) => {
     return {
       ...state,
       isLoading: true
     };
   }),
-  on(itemActions.loadItemSuccess, (state: State, { item }) => {
-    return {
+  on(itemActions.loadItemSuccess, (state: ItemsState, { item }) => {
+    return itemEntityAdapter.addOne(item, {
       ...state,
-      isLoading: false,
-      item
-    };
+      isLoading: false
+    });
   }),
-
-  on(itemActions.loadLatestItemId, (state: State) => {
-    return {
-      ...state,
-      isLoading: true
-    };
-  }),
-  on(itemActions.loadLatestItemIdSuccess, (state: State, { latestItemId }) => {
-    return {
-      ...state,
-      isLoading: false,
-      latestItemId
-    };
-  }),
-
-  on(itemActions.loadTopItemIds, (state: State) => {
-    return {
-      ...state,
-      isLoading: true
-    };
-  }),
-  on(itemActions.loadTopItemIdsSuccess, (state: State, { topItemIds }) => {
-    return {
-      ...state,
-      isLoading: false,
-      topItemIds
-    };
-  }),
-
-  on(itemActions.loadNewItemIds, (state: State) => {
-    return {
-      ...state,
-      isLoading: true
-    };
-  }),
-  on(itemActions.loadNewItemIdsSuccess, (state: State, { newItemIds }) => {
-    return {
-      ...state,
-      isLoading: false,
-      newItemIds
-    };
-  }),
-
-  on(itemActions.loadBestItemIds, (state: State) => {
-    return {
-      ...state,
-      isLoading: true
-    };
-  }),
-  on(itemActions.loadBestItemIdsSuccess, (state: State, { bestItemIds }) => {
-    return {
-      ...state,
-      isLoading: false,
-      bestItemIds
-    };
-  }),
-
-  on(itemActions.loadItemFail, (state: State, { errorMessage }) => {
+  on(itemActions.loadItemFail, (state: ItemsState, { errorMessage }) => {
     return {
       ...state,
       isLoading: false,
@@ -107,10 +39,17 @@ const itemReducer = createReducer(
   })
 );
 
-export function reducer(state: State | undefined, action: Action) {
+export function reducer(state: ItemsState | undefined, action: Action) {
   if (!environment.production) {
     console.log('Action dispatched: ', action.type);
   }
 
   return itemReducer(state, action);
 }
+
+export const {
+  selectAll,
+  selectEntities,
+  selectIds,
+  selectTotal
+} = itemEntityAdapter.getSelectors();

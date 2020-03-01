@@ -1,39 +1,19 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { State as ItemState } from '@store/reducers/item.reducer';
+import * as fromItems from '@store/reducers/item.reducer';
 
-export const getItemState = createFeatureSelector<ItemState>('item');
+export const selectItemsState = createFeatureSelector<fromItems.ItemsState>('items');
 
-export const getItemLoading = createSelector(
-  getItemState,
+export const getItemsLoading = createSelector(
+  selectItemsState,
   state => state.isLoading
 );
 
-export const getItem = createSelector(
-  getItemState,
-  state => state.item
+export const getItems = createSelector(
+  selectItemsState,
+  fromItems.selectAll
 );
 
-export const getLatestItemId = createSelector(
-  getItemState,
-  state => state.latestItemId
-);
-
-export const getTopItemIds = createSelector(
-  getItemState,
-  state => state.topItemIds
-);
-
-export const getNewItemIds = createSelector(
-  getItemState,
-  state => state.newItemIds
-);
-
-export const getBestItemIds = createSelector(
-  getItemState,
-  state => state.bestItemIds
-);
-
-export const getItemErrorMessage = createSelector(
-  getItemState,
+export const getItemsErrorMessage = createSelector(
+  selectItemsState,
   state => state.errorMessage
 );

@@ -15,6 +15,7 @@ import { reducers, metaReducers } from './store/reducers';
 import { environment } from '@environments/environment';
 
 import { ItemEffects } from '@store/effects/item.effects';
+import { ItemIdEffects } from '@store/effects/itemid.effects';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { ItemEffects } from '@store/effects/item.effects';
       }
     }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([ItemEffects])
+    EffectsModule.forRoot([ItemEffects, ItemIdEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,16 +5,16 @@ import { Observable } from 'rxjs';
 
 import { State } from '@app/store/reducers';
 import { Item } from '@api/models';
+import { getItems, getItemsErrorMessage, getItemsLoading } from '@app/store/selector/item.selectors';
 import {
   getBestItemIds,
-  getItem,
-  getItemErrorMessage,
-  getItemLoading,
   getLatestItemId,
   getNewItemIds,
   getTopItemIds
-} from '@app/store/selector/item.selectors';
+} from '@app/store/selector/itemid.selectors';
+
 import * as itemActions from '@store/actions/item.actions';
+import * as itemIdActions from '@store/actions/itemid.actions';
 
 @Component({
   selector: 'app-root',
@@ -22,11 +22,11 @@ import * as itemActions from '@store/actions/item.actions';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  loading$: Observable<boolean>;
-  error$: Observable<string>;
-  item$: Observable<Item>;
-  latestItemId$: Observable<number>;
+  itemsLoading$: Observable<boolean>;
+  itemsError$: Observable<string>;
+  items$: Observable<Item[]>;
 
+  latestItemId$: Observable<number>;
   topItemIds$: Observable<number[]>;
   newItemIds$: Observable<number[]>;
   bestItemIds$: Observable<number[]>;
@@ -34,29 +34,33 @@ export class AppComponent implements OnInit {
   constructor(private store: Store<State>) { }
 
   ngOnInit() {
-    this.item$ = this.store.pipe(select(getItem));
-    this.latestItemId$ = this.store.pipe(select(getLatestItemId));
+    this.items$ = this.store.pipe(select(getItems));
+    this.itemsLoading$ = this.store.pipe(select(getItemsLoading));
+    this.itemsError$ = this.store.pipe(select(getItemsErrorMessage));
 
+    this.latestItemId$ = this.store.pipe(select(getLatestItemId));
     this.topItemIds$ = this.store.pipe(select(getTopItemIds));
     this.newItemIds$ = this.store.pipe(select(getNewItemIds));
     this.bestItemIds$ = this.store.pipe(select(getBestItemIds));
 
-    this.loading$ = this.store.pipe(select(getItemLoading));
-    this.error$ = this.store.pipe(select(getItemErrorMessage));
-
-    // Load a single HN item
+    // Load several single HN items
     this.store.dispatch(itemActions.loadItem({ id: 8863 }));
 
+    // A second request does not produce a double entry in the store thanks to the EntityState
+    this.store.dispatch(itemActions.loadItem({ id: 8863 }));
+    this.store.dispatch(itemActions.loadItem({ id: 8864 }));
+    this.store.dispatch(itemActions.loadItem({ id: 8865 }));
+
     // Get the currently highest available item id
-    this.store.dispatch(itemActions.loadLatestItemId());
+    this.store.dispatch(itemIdActions.loadLatestItemId());
 
     // Get the top rated item ids
-    this.store.dispatch(itemActions.loadTopItemIds());
+    this.store.dispatch(itemIdActions.loadTopItemIds());
 
     // Get the newest item ids
-    this.store.dispatch(itemActions.loadNewItemIds());
+    this.store.dispatch(itemIdActions.loadNewItemIds());
 
     // Get the best rated item ids
-    this.store.dispatch(itemActions.loadBestItemIds());
+    this.store.dispatch(itemIdActions.loadBestItemIds());
   }
 }
