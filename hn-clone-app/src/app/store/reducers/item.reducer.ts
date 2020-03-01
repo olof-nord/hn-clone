@@ -30,6 +30,14 @@ const itemReducer = createReducer(
       isLoading: false
     });
   }),
+
+  on(itemActions.loadTopItemsSuccess, (state: ItemsState) => {
+    return {
+      ...state,
+      isLoading: false
+    };
+  }),
+
   on(itemActions.loadItemFail, (state: ItemsState, { errorMessage }) => {
     return {
       ...state,

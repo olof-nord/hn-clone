@@ -11,6 +11,10 @@ export const loadItemSuccess = createAction(
   props<{ item: Item }>()
 );
 
+export const loadTopItemsSuccess = createAction(
+  '[Item] Load TOP items success'
+);
+
 export const loadItemFail = createAction(
   '[Item] Load item failure',
   props<{ errorMessage: string }>()

@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 
 import { HackerNewsApiService } from '@api/services/hacker-news-api.service';
 import * as itemActions from '@store/actions/item.actions';
+import * as itemIdActions from '@store/actions/itemid.actions';
+
 import { Item } from '@api/models';
+import { ItemsState } from '@store/reducers/item.reducer';
 
 @Injectable()
 export class ItemEffects {
@@ -14,7 +18,8 @@ export class ItemEffects {
 
   constructor(
     private actions$: Actions,
-    private apiService: HackerNewsApiService
+    private apiService: HackerNewsApiService,
+    private store: Store<ItemsState>
   ) {}
 
   loadItem$ = createEffect(() => this.actions$.pipe(
@@ -32,6 +37,19 @@ export class ItemEffects {
         )
       )
     )
+  );
+
+  loadTopItems$ = createEffect(() => this.actions$.pipe(
+    ofType(itemIdActions.loadTopItemIdsSuccess),
+    mergeMap(props => {
+
+      props.topItemIds.forEach((itemId: number) => {
+        this.store.dispatch(itemActions.loadItem({ id: itemId }));
+      });
+
+      return of(itemActions.loadTopItemsSuccess());
+      }
+    ))
   );
 
 }

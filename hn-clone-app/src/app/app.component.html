@@ -33,18 +33,6 @@
   </p>
 </div>
 
-<div *ngIf="newItemIds$ | async as newItemIds">
-  <p>
-    NEWEST item ids: {{ newItemIds }}
-  </p>
-</div>
-
-<div *ngIf="bestItemIds$ | async as bestItemIds">
-  <p>
-    BEST item ids: {{ bestItemIds }}
-  </p>
-</div>
-
 <div *ngIf="itemsError$ | async as error">
   <p>
     <ngb-alert dismissible="false" type="danger" >

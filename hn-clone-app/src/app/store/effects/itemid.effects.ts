@@ -29,7 +29,7 @@ export class ItemIdEffects {
             return of(itemIdActions.loadItemIdFail({ errorMessage: this.errorMessage }));
           })
         )
-    )
+      )
     )
   );
 
@@ -46,7 +46,7 @@ export class ItemIdEffects {
             return of(itemIdActions.loadItemIdFail({ errorMessage: this.errorMessage }));
           })
         )
-    )
+      )
     )
   );
 
@@ -63,7 +63,7 @@ export class ItemIdEffects {
             return of(itemIdActions.loadItemIdFail({ errorMessage: this.errorMessage }));
           })
         )
-    )
+      )
     )
   );
 
@@ -80,7 +80,7 @@ export class ItemIdEffects {
             return of(itemIdActions.loadItemIdFail({ errorMessage: this.errorMessage }));
           })
         )
-    )
+      )
     )
   );
 
