@@ -1,42 +1,5 @@
-<h1>Hacker News Clone</h1>
+<h3 class="text-center">Hacker News</h3>
 
-<div *ngIf="itemsLoading$ | async">
-  <p>Loading</p>
-</div>
-
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Id</th>
-      <th scope="col">By</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of allStories$ | async; index as i">
-      <th scope="row">{{ i + 1 }}</th>
-      <td>{{ item?.id }}</td>
-      <td>{{ item?.by }}</td>
-    </tr>
-  </tbody>
-</table>
-
-<div *ngIf="latestItemId$ | async as latestItemId">
-  <p>
-    latest item id: {{ latestItemId }}
-  </p>
-</div>
-
-<div *ngIf="topItemIds$ | async as topItemIds">
-  <p>
-    TOP item ids: {{ topItemIds }}
-  </p>
-</div>
-
-<div *ngIf="itemsError$ | async as error">
-  <p>
-    <ngb-alert dismissible="false" type="danger" >
-      An error occurred: {{ error }}
-    </ngb-alert>
-  </p>
+<div class="container bg-white">
+  <app-dashboard></app-dashboard>
 </div>

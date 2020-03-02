@@ -16,10 +16,14 @@ import { environment } from '@environments/environment';
 
 import { ItemEffects } from '@store/effects/item.effects';
 import { ItemIdEffects } from '@store/effects/itemid.effects';
+import { DashboardComponent } from '@dashboard/dashboard.component';
+import { ItemComponent } from '@item/item.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DashboardComponent,
+    ItemComponent
   ],
   imports: [
     BrowserModule,

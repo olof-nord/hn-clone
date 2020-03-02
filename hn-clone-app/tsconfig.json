@@ -10,7 +10,10 @@
 
       "@store/reducers/*": ["app/store/reducers/*"],
       "@store/actions/*": ["app/store/actions/*"],
-      "@store/effects/*": ["app/store/effects/*"]
+      "@store/effects/*": ["app/store/effects/*"],
+
+      "@dashboard/*": ["app/dashboard/*"],
+      "@item/*": ["app/item/*"]
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
