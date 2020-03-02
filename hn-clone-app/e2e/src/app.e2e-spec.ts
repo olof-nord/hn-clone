@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Hacker News Clone');
+    expect(page.getTitleText()).toContain('Hacker News');
   });
 
   afterEach(async () => {
