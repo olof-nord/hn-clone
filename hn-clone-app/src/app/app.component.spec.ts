@@ -1,12 +1,20 @@
 import { TestBed, async } from '@angular/core/testing';
+import { StoreModule } from '@ngrx/store';
+
+import { metaReducers, reducers} from '@app/store/reducers';
 
 import { AppComponent } from './app.component';
+import { DashboardComponent } from '@dashboard/dashboard.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        StoreModule.forRoot(reducers, { metaReducers })
+      ],
       declarations: [
-        AppComponent
+        AppComponent,
+        DashboardComponent
       ],
     }).compileComponents();
   }));
