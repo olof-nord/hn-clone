@@ -29,7 +29,7 @@ export class ItemEffects {
         .getItem({ itemId: action.id, itemFormat: this.itemFormat })
         .pipe(
           map((item: Item) => {
-            return itemActions.loadItemSuccess({ item });
+            return itemActions.loadItemSuccess({ item, index: action.index });
           }),
           catchError(() => {
             return of(itemActions.loadItemFail({ errorMessage: this.errorMessage }));
@@ -43,9 +43,9 @@ export class ItemEffects {
     ofType(itemIdActions.loadTopItemIdsSuccess),
     mergeMap(props => {
 
-      props.topItemIds.forEach((itemId: number) => {
-        this.store.dispatch(itemActions.loadItem({ id: itemId }));
-      });
+      for (let i = 0; i < props.topItemIds.length; i++) {
+        this.store.dispatch(itemActions.loadItem({ id: props.topItemIds[i], index: i }));
+      }
 
       return of(itemActions.loadTopItemsSuccess());
       }

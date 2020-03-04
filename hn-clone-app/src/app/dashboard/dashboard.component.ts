@@ -13,16 +13,17 @@ import { getAllStories } from '@app/store/selector/item.selectors';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  allStories$: Observable<Item[]>;
+  topStories$: Observable<Item[]>;
 
   constructor(private store: Store<State>) { }
 
   ngOnInit(): void {
-    // Select all stories available in the state
-    this.allStories$ = this.store.pipe(select(getAllStories));
-
-    // Fetch the top rated items
+    // Fetch and load the top 500 top rated items
     this.store.dispatch(itemIdActions.loadTopItemIds());
+
+    // Select top stories from the state
+    this.topStories$ = this.store.pipe(select(getAllStories));
+
   }
 
 }

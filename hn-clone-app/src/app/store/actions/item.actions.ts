@@ -3,12 +3,12 @@ import { Item } from '@api/models';
 
 export const loadItem = createAction(
   '[Item] Load item',
-  props<{ id: number }>()
+  props<{ id: number, index: number }>()
 );
 
 export const loadItemSuccess = createAction(
   '[Item] Load item success',
-  props<{ item: Item }>()
+  props<{ item: Item, index: number }>()
 );
 
 export const loadTopItemsSuccess = createAction(
