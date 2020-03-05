@@ -3,16 +3,17 @@
     <div class="card bg-light border-0">
       <div class="card-body">
         <h5 class="card-title">
-          <span>{{ index }}.</span>
-          <span>&#x25B2;</span>
-          {{ item?.title }} <span class="text-muted">(<a href="#" class="card-link">{{ item?.url }}</a>)</span>
+          <span class="text-muted">{{ index }}.</span>
+          <a href="#"><span class="text-muted">&#x25B2;</span></a>
+          <a href="{{ item?.url }}">{{ item?.title }}</a>
+          <span *ngIf="item?.url" class="text-muted"> (<a href="{{ getOtherItemsURI() }}" class="card-link">{{ getHostname() }}</a>)</span>
         </h5>
         <h6 class="card-subtitle text-muted ml-4">
           <span class="pr-1">{{ item?.score }} points</span>
-          <span class="pr-1">by {{ item?.by }}</span>
-          <span class="pr-1"><a href="#">3 hours ago</a></span>
-          <span class="pr-1">| <a href="#">hide</a></span>
-          <span>| <a href="#">105 comments</a></span>
+          <span class="pr-1"> by <a href="{{ getUserURI() }}"> {{ item?.by }}</a></span>
+          <span class="pr-1"><a href="#">{{ item?.time }} ago</a></span>
+          <span class="pr-1">| <a href="{{ getHideURI() }}">hide</a></span>
+          <span>| <a href="#">{{ item?.descendants }} comments</a></span>
         </h6>
       </div>
     </div>
