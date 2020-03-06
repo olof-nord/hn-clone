@@ -1,6 +1,12 @@
 name: Hacker News Clone Pipeline
 
-on: [push]
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
 
 jobs:
   build:
