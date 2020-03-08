@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { State } from '@app/store/reducers';
 import { Item } from '@api/models/item';
 import * as itemIdActions from '@store/actions/itemid.actions';
-import { getAllStories } from '@app/store/selector/item.selectors';
+import { getAllStories } from '@store/selector/item.selectors';
 
 @Component({
   selector: 'app-dashboard',

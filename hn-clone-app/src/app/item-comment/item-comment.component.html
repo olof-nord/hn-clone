@@ -1,0 +1,19 @@
+<div class="row no-gutters bg-light">
+  <div class="col-12">
+    <div class="card bg-light border-0">
+      <div class="card-body">
+        <h5 class="card-subtitle">
+          <a href="#"><span class="text-muted">&#x25B2;</span></a>
+          <a href="{{ getUserURI() }}">{{ item?.by }}</a>
+          <a href="#">{{ item?.time }} ago</a>
+          <a href="#"> [-]</a>
+        </h5>
+        <div class="card-text" [innerHTML]="item?.text"></div>
+      </div>
+      <div class="card-footer">
+        <a href="#">reply</a>
+      </div>
+    </div>
+  </div>
+</div>
+

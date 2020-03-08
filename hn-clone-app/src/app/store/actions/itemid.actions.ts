@@ -28,7 +28,7 @@ export const loadBestItemIds = createAction(
   '[ItemId] Load BEST item ids'
 );
 export const loadBestItemIdsSuccess = createAction(
-  '[Item] Load BEST item ids success',
+  '[ItemId] Load BEST item ids success',
   props<{ bestItemIds: number[] }>()
 );
 

@@ -29,7 +29,7 @@ export class ItemEffects {
         .getItem({ itemId: action.id, itemFormat: this.itemFormat })
         .pipe(
           map((item: Item) => {
-            return itemActions.loadItemSuccess({ item, index: action.index });
+            return itemActions.loadItemSuccess({ item, index: action?.index });
           }),
           catchError(() => {
             return of(itemActions.loadItemFail({ errorMessage: this.errorMessage }));
@@ -48,6 +48,19 @@ export class ItemEffects {
       }
 
       return of(itemActions.loadTopItemsSuccess());
+      }
+    ))
+  );
+
+  loadRelatedComments$ = createEffect(() => this.actions$.pipe(
+    ofType(itemActions.loadRelatedComments),
+    mergeMap(props => {
+
+        for (let i = 0; i < props.relatedCommentIds.length; i++) {
+          this.store.dispatch(itemActions.loadItem({ id: props.relatedCommentIds[i], index: i }));
+        }
+
+        return of(itemActions.loadRelatedCommentsSuccess());
       }
     ))
   );

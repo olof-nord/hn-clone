@@ -12,7 +12,7 @@ export class ItemComponent implements OnInit {
   item: Item;
 
   @Input()
-  index: number;
+  index?: number;
 
   private baseURL = 'https://news.ycombinator.com/';
 

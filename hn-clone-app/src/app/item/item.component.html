@@ -3,7 +3,7 @@
     <div class="card bg-light border-0">
       <div class="card-body">
         <h5 class="card-title">
-          <span class="text-muted">{{ index }}.</span>
+          <span *ngIf="index > 0" class="text-muted">{{ index }}.</span>
           <a href="#"><span class="text-muted">&#x25B2;</span></a>
           <a href="{{ item?.url }}">{{ item?.title }}</a>
           <span *ngIf="item?.url" class="text-muted"> (<a href="{{ getOtherItemsURI() }}" class="card-link">{{ getHostname() }}</a>)</span>
@@ -13,7 +13,7 @@
           <span class="pr-1"> by <a href="{{ getUserURI() }}"> {{ item?.by }}</a></span>
           <span class="pr-1"><a href="#">{{ item?.time }} ago</a></span>
           <span class="pr-1">| <a href="{{ getHideURI() }}">hide</a></span>
-          <span>| <a href="#">{{ item?.descendants }} comments</a></span>
+          <span>| <a *ngIf="item" [routerLink]="['item', item?.id]">{{ item?.descendants }} comments</a></span>
         </h6>
       </div>
     </div>

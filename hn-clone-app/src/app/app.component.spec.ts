@@ -1,5 +1,6 @@
 import { TestBed, async } from '@angular/core/testing';
 import { StoreModule } from '@ngrx/store';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { metaReducers, reducers} from '@app/store/reducers';
 
@@ -10,6 +11,7 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        RouterTestingModule,
         StoreModule.forRoot(reducers, { metaReducers })
       ],
       declarations: [

@@ -1,5 +1,3 @@
-<div class="container-xl h-100">
-  <div *ngFor="let item of topStories$ | async; index as i">
-    <app-item [item]="item" [index]="i+1"></app-item>
-  </div>
+<div *ngFor="let item of topStories$ | async; index as i">
+  <app-item [item]="item" [index]="i+1"></app-item>
 </div>

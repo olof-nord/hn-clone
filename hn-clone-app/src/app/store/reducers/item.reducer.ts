@@ -6,11 +6,11 @@ import * as itemActions from '@store/actions/item.actions';
 import { Item } from '@api/models/item';
 
 export interface ItemWithIndex extends Item {
-  index: number;
+  index?: number;
 }
 
 export function sortByIndex(item1: ItemWithIndex, item2: ItemWithIndex): number {
-  return item1.index - item2.index;
+  return item1?.index - item2?.index;
 }
 
 export interface ItemsState extends EntityState<ItemWithIndex> {

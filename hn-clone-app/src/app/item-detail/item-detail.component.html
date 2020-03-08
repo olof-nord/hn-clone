@@ -1,0 +1,12 @@
+<app-item [item]="item$ | async" [index]="-1"></app-item>
+
+<div class="input-group mt-1">
+  <label>
+    <input class="form-control" type="text">
+  </label>
+  <button class="btn btn-outline-secondary" type="button">add comment</button>
+</div>
+
+<div *ngFor="let comment of comments$ | async">
+  <app-item-comment [item]="comment"></app-item-comment>
+</div>

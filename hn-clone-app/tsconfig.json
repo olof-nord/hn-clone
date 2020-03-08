@@ -11,9 +11,12 @@
       "@store/reducers/*": ["app/store/reducers/*"],
       "@store/actions/*": ["app/store/actions/*"],
       "@store/effects/*": ["app/store/effects/*"],
+      "@store/selector/*": ["app/store/selector/*"],
 
       "@dashboard/*": ["app/dashboard/*"],
-      "@item/*": ["app/item/*"]
+      "@item/*": ["app/item/*"],
+      "@item-comment/*": ["app/item-comment/*"],
+      "@item-detail/*": ["app/item-detail/*"]
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,

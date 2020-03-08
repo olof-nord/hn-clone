@@ -18,12 +18,16 @@ import { ItemEffects } from '@store/effects/item.effects';
 import { ItemIdEffects } from '@store/effects/itemid.effects';
 import { DashboardComponent } from '@dashboard/dashboard.component';
 import { ItemComponent } from '@item/item.component';
+import { ItemDetailComponent } from '@item-detail/item-detail.component';
+import { ItemCommentComponent } from '@item-comment/item-comment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    ItemComponent
+    ItemComponent,
+    ItemDetailComponent,
+    ItemCommentComponent
   ],
   imports: [
     BrowserModule,
