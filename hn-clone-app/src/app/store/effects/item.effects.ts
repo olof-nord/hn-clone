@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, withLatestFrom } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 
 import { HackerNewsApiService } from '@api/services/hacker-news-api.service';
 import * as itemActions from '@store/actions/item.actions';
-import * as itemIdActions from '@store/actions/itemid.actions';
+import { State } from '@app/store/reducers';
 
 import { Item } from '@api/models';
-import { ItemsState } from '@store/reducers/item.reducer';
 
 @Injectable()
 export class ItemEffects {
@@ -19,7 +18,7 @@ export class ItemEffects {
   constructor(
     private actions$: Actions,
     private apiService: HackerNewsApiService,
-    private store: Store<ItemsState>
+    private store$: Store<State>
   ) {}
 
   loadItem$ = createEffect(() => this.actions$.pipe(
@@ -40,11 +39,12 @@ export class ItemEffects {
   );
 
   loadTopItems$ = createEffect(() => this.actions$.pipe(
-    ofType(itemIdActions.loadTopItemIdsSuccess),
-    mergeMap(props => {
+    ofType(itemActions.loadTopItems),
+    withLatestFrom(this.store$),
+    mergeMap(([props, store]) => {
 
-      for (let i = 0; i < props.topItemIds.length; i++) {
-        this.store.dispatch(itemActions.loadItem({ id: props.topItemIds[i], index: i }));
+      for (let i = props.start; i <= props.end; i++) {
+        this.store$.dispatch(itemActions.loadItem({ id: store.itemIds.topItemIds[i], index: i }));
       }
 
       return of(itemActions.loadTopItemsSuccess());
@@ -57,7 +57,7 @@ export class ItemEffects {
     mergeMap(props => {
 
         for (let i = 0; i < props.relatedCommentIds.length; i++) {
-          this.store.dispatch(itemActions.loadItem({ id: props.relatedCommentIds[i], index: i }));
+          this.store$.dispatch(itemActions.loadItem({ id: props.relatedCommentIds[i], index: i }));
         }
 
         return of(itemActions.loadRelatedCommentsSuccess());

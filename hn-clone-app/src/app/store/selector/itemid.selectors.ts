@@ -3,7 +3,7 @@ import * as fromItemsId from '@store/reducers/itemid.reducer';
 
 export const selectItemsIdState = createFeatureSelector<fromItemsId.ItemsIdState>('itemIds');
 
-export const getItemsIdLoading = createSelector(
+export const getItemIdsLoading = createSelector(
   selectItemsIdState,
   itemIds => itemIds.isLoading
 );

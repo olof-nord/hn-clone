@@ -11,6 +11,11 @@ export const loadItemSuccess = createAction(
   props<{ item: Item, index?: number }>()
 );
 
+export const loadTopItems = createAction(
+  '[Item] Load TOP items',
+  props<{ start: number, end: number }>()
+);
+
 export const loadTopItemsSuccess = createAction(
   '[Item] Load TOP items success'
 );
