@@ -11,7 +11,7 @@
         <h6 class="card-subtitle text-muted ml-4">
           <span class="pr-1">{{ item?.score }} points</span>
           <span class="pr-1"> by <a href="{{ getUserURI() }}"> {{ item?.by }}</a></span>
-          <span class="pr-1"><a href="#">{{ item?.time }} ago</a></span>
+          <span class="pr-1"><a *ngIf="item" [routerLink]="['item', item?.id]">{{ item?.time * 1000 | date }}</a></span>
           <span class="pr-1">| <a href="{{ getHideURI() }}">hide</a></span>
           <span>| <a *ngIf="item" [routerLink]="['item', item?.id]">{{ item?.descendants }} comments</a></span>
         </h6>
