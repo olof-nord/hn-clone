@@ -36,11 +36,13 @@ export class ItemDetailComponent implements OnInit, OnDestroy {
 
     this.subscriptions.add(this.item$.subscribe((item: Item) => {
       // If not coming from the dashboard, load the item
-      if (item === undefined) {
+      if (!item) {
         return this.store.dispatch(itemActions.loadItem({ id: this.itemId }));
       } else {
-        // If item is loaded, load child comments
-        return this.store.dispatch(itemActions.loadRelatedComments({relatedCommentIds: item.kids}));
+        // If item is loaded, load child comments if available
+        if (item.kids) {
+          return this.store.dispatch(itemActions.loadRelatedComments({ relatedCommentIds: item.kids }));
+        }
       }
     }));
 
