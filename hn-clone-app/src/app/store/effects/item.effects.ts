@@ -43,7 +43,7 @@ export class ItemEffects {
     withLatestFrom(this.store$),
     mergeMap(([props, store]) => {
 
-      for (let i = props.start; i <= props.end; i++) {
+      for (let i = props.start; i < props.end; i++) {
         this.store$.dispatch(itemActions.loadItem({ id: store.itemIds.topItemIds[i], index: i }));
       }
 

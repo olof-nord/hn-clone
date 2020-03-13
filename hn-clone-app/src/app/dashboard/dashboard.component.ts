@@ -6,7 +6,7 @@ import { State } from '@app/store/reducers';
 import { Item } from '@api/models/item';
 import * as itemIdActions from '@store/actions/itemid.actions';
 import * as itemActions from '@store/actions/item.actions';
-import { getAllStories } from '@store/selector/item.selectors';
+import { getAllStoriesAndJobs } from '@store/selector/item.selectors';
 import { getItemIdsLoading } from '@store/selector/itemid.selectors';
 
 @Component({
@@ -15,7 +15,7 @@ import { getItemIdsLoading } from '@store/selector/itemid.selectors';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit, OnDestroy {
-  topStories$: Observable<Item[]>;
+  topItems$: Observable<Item[]>;
 
   private itemIdsLoading$: Observable<boolean>;
   private subscriptions: Subscription = new Subscription();
@@ -35,8 +35,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
       }
     }));
 
-    // Select the stories
-    this.topStories$ = this.store$.pipe(select(getAllStories));
+    // Select the top stories and jobs
+    this.topItems$ = this.store$.pipe(select(getAllStoriesAndJobs));
+
   }
 
   ngOnDestroy(): void {

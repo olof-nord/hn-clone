@@ -1,34 +1,34 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromItemsId from '@store/reducers/itemid.reducer';
 
-export const selectItemsIdState = createFeatureSelector<fromItemsId.ItemsIdState>('itemIds');
+export const selectItemIdsState = createFeatureSelector<fromItemsId.ItemsIdState>('itemIds');
 
 export const getItemIdsLoading = createSelector(
-  selectItemsIdState,
+  selectItemIdsState,
   itemIds => itemIds.isLoading
 );
 
 export const getLatestItemId = createSelector(
-  selectItemsIdState,
+  selectItemIdsState,
   itemIds => itemIds.latestItemId
 );
 
 export const getTopItemIds = createSelector(
-  selectItemsIdState,
+  selectItemIdsState,
   itemIds => itemIds.topItemIds
 );
 
 export const getNewItemIds = createSelector(
-  selectItemsIdState,
+  selectItemIdsState,
   itemIds => itemIds.newItemIds
 );
 
 export const getBestItemIds = createSelector(
-  selectItemsIdState,
+  selectItemIdsState,
   itemIds => itemIds.bestItemIds
 );
 
 export const getItemIdErrorMessage = createSelector(
-  selectItemsIdState,
+  selectItemIdsState,
   itemIds => itemIds.errorMessage
 );
