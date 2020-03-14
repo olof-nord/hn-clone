@@ -43,7 +43,7 @@ jobs:
         args: validate -i api/hacker_news_api.yaml
 
     - name: Deploy to GitHub Pages
-      run: npm run deploy
+      run: npm --prefix ./hn-clone-app run deploy
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
