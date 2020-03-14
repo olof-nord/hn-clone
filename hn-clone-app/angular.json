@@ -141,7 +141,9 @@
           "options": {
             "baseHref": "https://olof-nord.github.io/hn-clone/",
             "noSilent": true,
-            "message": "Deploying app to GitHub Pages"
+            "message": "Deploying app to GitHub Pages",
+            "name": "Olof Nord",
+            "email": "olof.nord@tutanota.com"
           }
         }
       }
