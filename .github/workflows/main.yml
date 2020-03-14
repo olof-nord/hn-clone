@@ -41,3 +41,9 @@ jobs:
       uses: docker://openapitools/openapi-generator-cli
       with:
         args: validate -i api/hacker_news_api.yaml
+
+    - name: Deploy to GitHub Pages
+      run: npm run deploy
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
